@@ -6,7 +6,10 @@ var DATA = [
 
 module.exports = function(app) {
   var express = require('express');
+  var bodyParser = require('body-parser');
   var talksRouter = express.Router();
+
+  app.use(bodyParser.json()); //parsing req json
 
   talksRouter.get('/', function(req, res) {
     res.send({
@@ -15,7 +18,16 @@ module.exports = function(app) {
   });
 
   talksRouter.post('/', function(req, res) {
-    res.status(201).end();
+    var newTitle = req.body.talk.title;
+    newId = Math.max.apply(Math, DATA.map(function(item) {
+      return item.id
+    })) + 1;
+    
+    DATA.push({id: newId, title: newTitle});
+
+    res.send({
+      'talks': DATA
+    });
   });
 
   talksRouter.get('/:id', function(req, res) {

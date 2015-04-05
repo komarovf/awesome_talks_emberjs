@@ -1,0 +1,9 @@
+<form {{ action 'addTalk' title on='submit'}}>
+  <p>
+  	<label for="talk-title">Enter Talk title: </label>
+  	{{input type="text" id="talk-title" value=title}}
+  </p>
+  <p><input type="submit" value="Add talk"></p>
+</form>
+
+{{yield}}
