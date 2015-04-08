@@ -19,7 +19,7 @@ module.exports = function(app) {
 
   talksRouter.post('/', function(req, res) {
     var newTitle = req.body.talk.title;
-    newId = Math.max.apply(Math, DATA.map(function(item) {
+    var newId = Math.max.apply(Math, DATA.map(function(item) {
       return item.id
     })) + 1;
     
